@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+// ...existing code...
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import Tutores from "../pages/Tutores";
@@ -7,41 +8,47 @@ import { useAuth } from "../hooks/useAuth";
 import { ReactNode } from "react";
 
 function PrivateRoute({ children }: { children: ReactNode }) {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/login" />;
+  const { state } = useAuth();
+  const user = state?.user;
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return <>{children}</>;
 }
 
 export function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
+    <Routes>
+      <Route path="/login" element={<Login />} />
 
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/tutores"
-          element={
-            <PrivateRoute>
-              <Tutores />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/animais"
-          element={
-            <PrivateRoute>
-              <Animais />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/tutores"
+        element={
+          <PrivateRoute>
+            <Tutores />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/animais"
+        element={
+          <PrivateRoute>
+            <Animais />
+          </PrivateRoute>
+        }
+      />
+
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }

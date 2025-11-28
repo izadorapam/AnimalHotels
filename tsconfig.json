@@ -12,6 +12,7 @@
 
     /* ---------- React + JSX ---------- */
     "jsx": "react-jsx",
+    "types": ["vite/client", "react", "react-dom"],
 
     /* ---------- Importações ---------- */
     "esModuleInterop": true,
