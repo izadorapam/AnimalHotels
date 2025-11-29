@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getTutorById, updateTutor } from "../../services/tutorService";
 
@@ -12,25 +12,29 @@ export default function EditarTutor() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function load() {
-      if (!id) return;
+    async function loadTutor() {
       try {
+        if (!id) return;
+
         const t = await getTutorById(id);
         setNome(t.nome);
         setEmail(t.email);
         setTelefone(t.telefone ?? "");
       } catch {
-        alert("Erro ao carregar tutor");
+        alert("Erro ao carregar tutor.");
+        navigate("/tutores");
       } finally {
         setLoading(false);
       }
     }
-    load();
-  }, [id]);
+
+    loadTutor();
+  }, [id, navigate]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!id) return;
+
     try {
       await updateTutor(id, { nome, email, telefone });
       navigate("/tutores");
@@ -39,25 +43,44 @@ export default function EditarTutor() {
     }
   }
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <p className="p-6">Carregando...</p>;
 
   return (
-    <div className="p-6">
-      <h1 className="text-xl mb-4">Editar Tutor</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-2">
+    <div className="p-6 max-w-lg">
+      <h1 className="text-2xl font-semibold mb-4">Editar Tutor</h1>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div>
           <label>Nome</label>
-          <input value={nome} onChange={(e) => setNome(e.target.value)} className="block" />
+          <input
+            className="border p-2 w-full rounded"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
         </div>
-        <div className="mb-2">
+
+        <div>
           <label>E-mail</label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} className="block" />
+          <input
+            className="border p-2 w-full rounded"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-        <div className="mb-2">
+
+        <div>
           <label>Telefone</label>
-          <input value={telefone} onChange={(e) => setTelefone(e.target.value)} className="block" />
+          <input
+            className="border p-2 w-full rounded"
+            value={telefone}
+            onChange={(e) => setTelefone(e.target.value)}
+          />
         </div>
-        <button type="submit" className="px-3 py-1 bg-green-600 text-white rounded">
+
+        <button
+          type="submit"
+          className="bg-green-600 hover:bg-green-700 text-white p-2 rounded"
+        >
           Atualizar
         </button>
       </form>

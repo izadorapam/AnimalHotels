@@ -1,28 +1,45 @@
-// ...existing code...
 import { Routes, Route, Navigate } from "react-router-dom";
+import { ReactNode } from "react";
+import { useLocation } from "react-router-dom";
+
+
+import { useAuth } from "../hooks/useAuth";
+
+// Páginas principais
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
-import Tutores from "../pages/Tutores";
-import Animais from "../pages/Animais";
-import { useAuth } from "../hooks/useAuth";
-import { ReactNode } from "react";
+
+// Tutores
+import Tutores from "../pages/tutores/TutoresPage";
+import EditarTutor from "../pages/tutores/EditarTutor";
+import NovoTutor from "../pages/tutores/NovoTutor";
+
+// Animais
+import AnimalPage from "../pages/animais/AnimalPage";
+import AnimalCreate from "../pages/animais/AnimalCreate";
+import AnimalEdit from "../pages/animais/AnimalEdit";
 
 function PrivateRoute({ children }: { children: ReactNode }) {
   const { state } = useAuth();
   const user = state?.user;
+  const location = useLocation();
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
   }
 
   return <>{children}</>;
 }
 
+
 export function AppRoutes() {
   return (
     <Routes>
+
+      {/* LOGIN */}
       <Route path="/login" element={<Login />} />
 
+      {/* DASHBOARD */}
       <Route
         path="/"
         element={
@@ -31,6 +48,8 @@ export function AppRoutes() {
           </PrivateRoute>
         }
       />
+
+      {/* TUTORES */}
       <Route
         path="/tutores"
         element={
@@ -40,14 +59,49 @@ export function AppRoutes() {
         }
       />
       <Route
-        path="/animais"
+        path="/tutores/novo"
         element={
           <PrivateRoute>
-            <Animais />
+            <NovoTutor />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/tutores/:id"
+        element={
+          <PrivateRoute>
+            <EditarTutor />
           </PrivateRoute>
         }
       />
 
+      {/* ANIMAIS */}
+      <Route
+        path="/animais"
+        element={
+          <PrivateRoute>
+            <AnimalPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/animais/novo"
+        element={
+          <PrivateRoute>
+            <AnimalCreate />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/animais/:id"
+        element={
+          <PrivateRoute>
+            <AnimalEdit />
+          </PrivateRoute>
+        }
+      />
+
+      {/* QUALQUER OUTRA ROTA REDIRECIONA */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

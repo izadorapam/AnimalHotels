@@ -9,17 +9,22 @@
   ],
   "tutors": [
     {
-      "id": "1",
       "nome": "João Silva",
       "email": "joao@mail.com",
-      "telefone": "11999999999",
-      "userId": 1
+      "telefone": "11999999995",
+      "id": "1"
     },
     {
       "id": "df5d",
       "email": "t@t.com",
       "nome": "Teste",
       "telefone": "111"
+    },
+    {
+      "id": "ebae",
+      "nome": "Shara",
+      "email": "Shara@gmail.com",
+      "telefone": "99999"
     }
   ],
   "animals": [
@@ -30,6 +35,14 @@
       "raca": "Labrador",
       "idade": 3,
       "tutorId": 1
+    },
+    {
+      "id": "adfc",
+      "nome": "Violetta",
+      "especie": "cachorro",
+      "raca": "SRD",
+      "idade": 8,
+      "tutorId": "ebae"
     }
   ]
 }

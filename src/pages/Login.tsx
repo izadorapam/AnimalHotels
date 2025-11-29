@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
+interface LocationState {
+  from?: string;
+}
 
 export default function Login() {
   const { state, login } = useAuth();
   const navigate = useNavigate();
+
+  // Agora o TypeScript entende que location.state pode existir e conter "from"
+  const location = useLocation() as { state?: LocationState };
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     try {
       await login(email, senha);
-      navigate("/tutores");
+
+      const from = location.state?.from || "/";
+
+      navigate(from, { replace: true });
     } catch (err) {
       console.error(err);
     }
