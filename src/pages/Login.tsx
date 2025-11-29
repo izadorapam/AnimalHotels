@@ -1,5 +1,3 @@
-console.log("ENV = ", import.meta.env.VITE_API_URL);
-
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
