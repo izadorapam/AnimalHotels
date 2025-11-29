@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useCallback, useEffect, ReactNode } from "react";
-import { api, authApi } from "../services/api";
+import { api } from "../services/api";
+import { loginService } from "../services/authService";
 
 export interface User {
   id: number | string;
@@ -29,7 +30,7 @@ function authReducer(state: AuthState, action: AuthAction): AuthState {
     case "LOGIN_REQUEST":
       return { ...state, isLoading: true, error: null };
     case "LOGIN_SUCCESS":
-      return { ...state, user: action.payload.user, token: action.payload.token, isLoading: false, error: null };
+      return { ...state, user: action.payload.user, token: action.payload.token, isLoading: false };
     case "LOGIN_ERROR":
       return { ...state, isLoading: false, error: action.payload, user: null };
     case "LOGOUT":
@@ -50,9 +51,11 @@ export const AuthContext = createContext<{
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+  // Restaura token do localStorage
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     const user = localStorage.getItem("authUser");
+
     if (token && user) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       dispatch({ type: "RESTORE_TOKEN", payload: { user: JSON.parse(user), token } });
@@ -61,12 +64,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback(async (email: string, senha: string) => {
     dispatch({ type: "LOGIN_REQUEST" });
+
     try {
-      const res = await authApi.post("/login", { email, senha });
+      const res = await loginService(email, senha);
       const { user, token } = res.data;
+
       localStorage.setItem("authToken", token);
       localStorage.setItem("authUser", JSON.stringify(user));
+
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
       dispatch({ type: "LOGIN_SUCCESS", payload: { user, token } });
     } catch (err: any) {
       const message = err.response?.data?.message ?? "Erro ao fazer login";

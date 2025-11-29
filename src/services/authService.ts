@@ -1,5 +1,5 @@
-import { api } from "./api";
+import { authApi } from "./api";
 
 export async function loginService(email: string, senha: string) {
-  return api.post("/login", { email, senha });
+  return authApi.post("/login", { email, password: senha });
 }
