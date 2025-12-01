@@ -13,12 +13,12 @@ export default function AnimalEdit() {
   const [tutors, setTutors] = useState<any[]>([]);
 
   const loadAnimal = async () => {
-    const res = await api.get(`/animals/${id}`); // <-- corrigido
+    const res = await api.get(`/animals/${id}`); 
     setAnimal(res.data);
   };
 
   const loadTutors = async () => {
-    const res = await api.get("/tutors"); // <-- corrigido
+    const res = await api.get("/tutors");
     setTutors(res.data);
   };
 
@@ -29,8 +29,8 @@ export default function AnimalEdit() {
   }, [id]);
 
 const handleSubmit = async (data: Partial<Animal>) => {
-  if (!id) return;           // <-- EVITA NaN
-  await animalService.update(id, data);  // id já é string
+  if (!id) return;          
+  await animalService.update(id, data);  
   navigate("/animals");
 };
 
