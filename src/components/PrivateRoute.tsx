@@ -8,6 +8,7 @@ interface PrivateRouteProps {
 
 export function PrivateRoute({ children }: PrivateRouteProps) {
   const { state } = useAuth();
+  console.log("PrivateRoute — user:", state.user, "token:", state.token);
 
   if (!state.token) {
     return <Navigate to="/login" replace />;

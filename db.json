@@ -37,6 +37,12 @@
       "nome": "leticia",
       "email": "letica@gmail.com",
       "telefone": "999999999999"
+    },
+    {
+      "nome": "antonio",
+      "email": "antoni@gmail.com",
+      "telefone": "33333333334",
+      "id": "bfdb"
     }
   ],
   "animals": [
@@ -55,6 +61,78 @@
       "raca": "SRD",
       "idade": 8,
       "tutorId": "ebae"
+    },
+    {
+      "id": "d484",
+      "nome": "Vivi",
+      "especie": "cachorro",
+      "raca": "SRD",
+      "idade": 4,
+      "tutorId": 1
+    },
+    {
+      "id": "a613",
+      "nome": "Violetta",
+      "especie": "gato",
+      "raca": "SRD",
+      "idade": 2,
+      "tutorId": null
+    },
+    {
+      "id": "df3c",
+      "nome": "lele",
+      "especie": "gato",
+      "raca": "SRD",
+      "idade": 3,
+      "tutorId": 8150
+    },
+    {
+      "id": "fa59",
+      "nome": "thor",
+      "especie": "cachorro",
+      "raca": "SRD",
+      "idade": 4,
+      "tutorId": null
+    },
+    {
+      "id": "dab1",
+      "nome": "teste",
+      "especie": "gato",
+      "raca": "teste",
+      "idade": 5,
+      "tutorId": null
+    },
+    {
+      "id": "efe4",
+      "nome": "teste",
+      "especie": "gato",
+      "raca": "SRD",
+      "idade": 1,
+      "tutorId": 8150
+    },
+    {
+      "id": "9c62",
+      "nome": "thor",
+      "especie": "cachorro",
+      "raca": "SRD",
+      "idade": 5,
+      "tutorId": null
+    },
+    {
+      "id": "0b0b",
+      "nome": "teste",
+      "especie": "gato",
+      "raca": "SRD",
+      "idade": 6,
+      "tutorId": null
+    },
+    {
+      "id": "645a",
+      "nome": "Lulu",
+      "especie": "cachorro",
+      "raca": "SRD",
+      "idade": 4,
+      "tutorId": 8150
     }
   ]
 }

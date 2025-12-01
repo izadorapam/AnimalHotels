@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Animal } from "../../types/Animal";
-import { animalService } from "../../services/animalService";
 import { api } from "../../services/api";
 import { Link } from "react-router-dom";
 
@@ -9,25 +8,38 @@ export default function AnimalPage() {
   const [tutors, setTutors] = useState<any[]>([]);
 
   const loadAnimals = async () => {
-    const res = await api.get("/animals");
+    const res = await api.get("/animals"); // <-- corrigido
     setAnimals(res.data);
   };
 
   const loadTutors = async () => {
-    const res = await api.get("/tutors");
-    setTutors(res.data);
+    try {
+      const res = await api.get("/tutores"); // <-- corrigido
+      setTutors(res.data);
+    } catch (err) {
+      console.error("ERRO AO CARREGAR TUTORES:", err);
+    }
   };
 
   const handleDelete = async (id: number) => {
     if (confirm("Tem certeza que deseja excluir?")) {
-      await api.delete(`/animals/${id}`);
+      await api.delete(`/animals/${id}`); // <-- corrigido
       loadAnimals();
     }
   };
 
   useEffect(() => {
-    loadAnimals();
-    loadTutors();
+    async function fetchData() {
+      try {
+        const res = await api.get("/animals"); // <-- corrigido
+        setAnimals(res.data);
+        loadTutors();
+      } catch (err) {
+        console.error("ERRO AO CARREGAR ANIMAIS:", err);
+      }
+    }
+
+    fetchData();
   }, []);
 
   return (
@@ -35,7 +47,7 @@ export default function AnimalPage() {
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Animais</h1>
 
-        <Link to="/animals/create">
+        <Link to="/animais/novo">
           <button className="bg-blue-600 text-white px-4 py-2 rounded">
             + Novo Animal
           </button>
@@ -69,7 +81,7 @@ export default function AnimalPage() {
               </td>
 
               <td className="border p-2 flex gap-2 justify-center">
-                <Link to={`/animals/edit/${a.id}`}>
+                <Link to={`/animais/${a.id}`}>
                   <button className="px-3 py-1 bg-yellow-500 text-white rounded">
                     Editar
                   </button>
