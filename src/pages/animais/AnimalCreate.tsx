@@ -10,7 +10,7 @@ export default function AnimalCreate() {
   const navigate = useNavigate();
 
   const loadTutors = async () => {
-    const res = await api.get("/tutors"); // <-- correto
+    const res = await api.get("/tutors"); 
     setTutors(res.data);
   };
 
@@ -19,8 +19,8 @@ export default function AnimalCreate() {
   }, []);
 
   const handleSubmit = async (data: Partial<Animal>) => {
-    await animalService.create(data); // <-- usa /animals
-    navigate("/animals"); // <-- rota do FRONT
+    await animalService.create(data); 
+    navigate("/animals"); 
   };
 
   return (

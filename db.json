@@ -2,8 +2,8 @@
   "users": [
     {
       "id": "1",
-      "email": "admin@example.com",
-      "password": "password",
+      "email": "izaaholi29@gmail.com",
+      "password": "1234",
       "name": "Admin"
     }
   ],
@@ -19,6 +19,12 @@
       "nome": "José",
       "email": "josebezerra@gmail.com",
       "telefone": "777777"
+    },
+    {
+      "id": "29aa",
+      "nome": "Izadora",
+      "email": "izaaholi29@gmail.com",
+      "telefone": "86999999999"
     }
   ],
   "animals": [
@@ -37,6 +43,14 @@
       "raca": "SRD",
       "idade": "8",
       "tutorId": "9178"
+    },
+    {
+      "id": "29a5",
+      "nome": "Sansão",
+      "especie": "Gato",
+      "raca": "Siames",
+      "idade": "4",
+      "tutorId": "29aa"
     }
   ]
 }

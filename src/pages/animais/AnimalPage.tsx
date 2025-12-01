@@ -8,13 +8,13 @@ export default function AnimalPage() {
   const [tutors, setTutors] = useState<any[]>([]);
 
   const loadAnimals = async () => {
-    const res = await api.get("/animals"); // <-- corrigido
+    const res = await api.get("/animals"); 
     setAnimals(res.data);
   };
 
   const loadTutors = async () => {
     try {
-      const res = await api.get("/tutors"); // <-- corrigido
+      const res = await api.get("/tutors"); 
       setTutors(res.data);
     } catch (err) {
       console.error("ERRO AO CARREGAR TUTORES:", err);
@@ -23,7 +23,7 @@ export default function AnimalPage() {
 
   const handleDelete = async (id: string) => {
     if (confirm("Tem certeza que deseja excluir?")) {
-      await api.delete(`/animals/${id}`); // <-- corrigido
+      await api.delete(`/animals/${id}`);
       loadAnimals();
     }
   };

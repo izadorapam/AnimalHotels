@@ -10,7 +10,6 @@ export default function Login() {
   const { state, login } = useAuth();
   const navigate = useNavigate();
 
-  // Agora o TypeScript entende que location.state pode existir e conter "from"
   const location = useLocation() as { state?: LocationState };
 
   const [email, setEmail] = useState("");
