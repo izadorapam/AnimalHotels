@@ -20,13 +20,13 @@ export function Navbar() {
     <nav className="navbar">
       <ul>
         <li>
-          <NavLink to="/tutores" className={({ isActive }) => isActive ? "active" : ""}>
+          <NavLink to="/tutors" className={({ isActive }) => isActive ? "active" : ""}>
             Tutores
           </NavLink>
         </li>
 
         <li>
-          <NavLink to="/animais" className={({ isActive }) => isActive ? "active" : ""}>
+          <NavLink to="/animals" className={({ isActive }) => isActive ? "active" : ""}>
             Animais
           </NavLink>
         </li>

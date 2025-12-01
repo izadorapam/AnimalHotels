@@ -20,7 +20,7 @@ export default function AnimalCreate() {
 
   const handleSubmit = async (data: Partial<Animal>) => {
     await animalService.create(data); // <-- usa /animals
-    navigate("/animais"); // <-- rota do FRONT
+    navigate("/animals"); // <-- rota do FRONT
   };
 
   return (

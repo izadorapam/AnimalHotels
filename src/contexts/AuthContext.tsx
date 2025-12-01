@@ -3,7 +3,7 @@ import { api } from "../services/api";
 import { loginService } from "../services/authService";
 
 export interface User {
-  id: number | string;
+  id: string;
   email: string;
   name?: string;
   nome?: string;

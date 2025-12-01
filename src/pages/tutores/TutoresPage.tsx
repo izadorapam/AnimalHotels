@@ -1,4 +1,4 @@
-// src/pages/TutoresPage.tsx
+// src/pages/TutorsPage.tsx
 import { useEffect, useState } from "react";
 import {
   getTutors,
@@ -8,8 +8,8 @@ import {
   TutorDTO,
 } from "../../services/tutorService";
 
-export default function TutoresPage() {
-  const [tutores, setTutores] = useState<TutorDTO[]>([]);
+export default function TutorsPage() {
+  const [tutors, setTutors] = useState<TutorDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,15 +19,15 @@ export default function TutoresPage() {
     telefone: "",
   });
 
-  const [editingId, setEditingId] = useState<string | number | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   async function loadData() {
     try {
       setLoading(true);
       const data = await getTutors();
-      setTutores(data);
+      setTutors(data);
     } catch (err) {
-      setError("Erro ao carregar tutores.");
+      setError("Erro ao carregar tutors.");
     } finally {
       setLoading(false);
     }
@@ -64,7 +64,7 @@ export default function TutoresPage() {
     });
   }
 
-  async function handleDelete(id: number | string) {
+  async function handleDelete(id: string) {
     if (!confirm("Deseja realmente excluir este tutor?")) return;
 
     try {
@@ -75,12 +75,12 @@ export default function TutoresPage() {
     }
   }
 
-  if (loading) return <p>Carregando tutores...</p>;
+  if (loading) return <p>Carregando tutors...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Tutores</h1>
+      <h1>Tutors</h1>
 
       {/* Formulário */}
       <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
@@ -133,7 +133,7 @@ export default function TutoresPage() {
           </tr>
         </thead>
         <tbody>
-          {tutores.map((t) => (
+          {tutors.map((t) => (
             <tr key={t.id}>
               <td>{t.nome}</td>
               <td>{t.email}</td>

@@ -2,7 +2,7 @@
 import api from "./api";
 
 export interface TutorDTO {
-  id?: number | string;
+  id?: string;
   nome: string;
   email: string;
   telefone?: string;
@@ -24,12 +24,12 @@ export async function createTutor(payload: TutorDTO) {
   return res.data;
 }
 
-export async function updateTutor(id: string | number, payload: Partial<TutorDTO>) {
+export async function updateTutor(id: string , payload: Partial<TutorDTO>) {
   const res = await api.put<TutorDTO>(`/tutors/${id}`, payload);
   return res.data;
 }
 
-export async function deleteTutor(id: string | number) {
+export async function deleteTutor(id: string ) {
   const res = await api.delete(`/tutors/${id}`);
   return res.data;
 }

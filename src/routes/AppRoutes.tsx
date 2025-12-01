@@ -9,12 +9,12 @@ import { useAuth } from "../hooks/useAuth";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 
-// Tutores
-import Tutores from "../pages/tutores/TutoresPage";
+// Tutors
+import Tutors from "../pages/tutores/TutoresPage";
 import EditarTutor from "../pages/tutores/EditarTutor";
 import NovoTutor from "../pages/tutores/NovoTutor";
 
-// Animais
+// Animals
 import AnimalPage from "../pages/animais/AnimalPage";
 import AnimalCreate from "../pages/animais/AnimalCreate";
 import AnimalEdit from "../pages/animais/AnimalEdit";
@@ -50,17 +50,17 @@ export function AppRoutes() {
         }
       />
 
-      {/* TUTORES */}
+      {/* TUTORs */}
       <Route
-        path="/tutores"
+        path="/tutors"
         element={
           <PrivateRoute>
-            <Tutores />
+            <Tutors />
           </PrivateRoute>
         }
       />
       <Route
-        path="/tutores/novo"
+        path="/tutors/novo"
         element={
           <PrivateRoute>
             <NovoTutor />
@@ -68,7 +68,7 @@ export function AppRoutes() {
         }
       />
       <Route
-        path="/tutores/:id"
+        path="/tutors/:id"
         element={
           <PrivateRoute>
             <EditarTutor />
@@ -76,9 +76,9 @@ export function AppRoutes() {
         }
       />
 
-      {/* ANIMAIS */}
+      {/* ANIMAls */}
       <Route
-        path="/animais"
+        path="/animals"
         element={
           <PrivateRoute>
             <AnimalPage />
@@ -88,7 +88,7 @@ export function AppRoutes() {
 
       {/* ESTA DEVE VIR ANTES */}
       <Route
-        path="/animais/novo"
+        path="/animals/novo"
         element={
           <PrivateRoute>
             <AnimalCreate />
@@ -98,7 +98,7 @@ export function AppRoutes() {
 
       {/* ESTA FICA POR ÚLTIMO */}
       <Route
-        path="/animais/:id"
+        path="/animals/:id"
         element={
           <PrivateRoute>
             <AnimalEdit />

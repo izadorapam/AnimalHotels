@@ -16,7 +16,7 @@ export default function NovoTutor() {
 
     try {
       await createTutor({ nome, email, telefone });
-      navigate("/tutores");
+      navigate("/tutors");
     } catch (err: any) {
       alert(err.response?.data?.message ?? "Erro ao criar tutor");
     } finally {

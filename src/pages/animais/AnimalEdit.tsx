@@ -23,14 +23,16 @@ export default function AnimalEdit() {
   };
 
   useEffect(() => {
+    if (!id) return;
     loadAnimal();
     loadTutors();
-  }, []);
+  }, [id]);
 
-  const handleSubmit = async (data: Partial<Animal>) => {
-    await animalService.update(Number(id), data);
-    navigate("/animais"); // <-- front
-  };
+const handleSubmit = async (data: Partial<Animal>) => {
+  if (!id) return;           // <-- EVITA NaN
+  await animalService.update(id, data);  // id já é string
+  navigate("/animals");
+};
 
   if (!animal) return <p className="p-4">Carregando...</p>;
 

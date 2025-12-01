@@ -14,14 +14,14 @@ export default function AnimalPage() {
 
   const loadTutors = async () => {
     try {
-      const res = await api.get("/tutores"); // <-- corrigido
+      const res = await api.get("/tutors"); // <-- corrigido
       setTutors(res.data);
     } catch (err) {
       console.error("ERRO AO CARREGAR TUTORES:", err);
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     if (confirm("Tem certeza que deseja excluir?")) {
       await api.delete(`/animals/${id}`); // <-- corrigido
       loadAnimals();
@@ -35,7 +35,7 @@ export default function AnimalPage() {
         setAnimals(res.data);
         loadTutors();
       } catch (err) {
-        console.error("ERRO AO CARREGAR ANIMAIS:", err);
+        console.error("ERRO AO CARREGAR ANIMAls:", err);
       }
     }
 
@@ -45,9 +45,9 @@ export default function AnimalPage() {
   return (
     <div className="p-6 flex flex-col gap-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Animais</h1>
+        <h1 className="text-2xl font-bold">Animals</h1>
 
-        <Link to="/animais/novo">
+        <Link to="/animals/novo">
           <button className="bg-blue-600 text-white px-4 py-2 rounded">
             + Novo Animal
           </button>
@@ -81,7 +81,7 @@ export default function AnimalPage() {
               </td>
 
               <td className="border p-2 flex gap-2 justify-center">
-                <Link to={`/animais/${a.id}`}>
+                <Link to={`/animals/${a.id}`}>
                   <button className="px-3 py-1 bg-yellow-500 text-white rounded">
                     Editar
                   </button>
@@ -89,7 +89,7 @@ export default function AnimalPage() {
 
                 <button
                   className="px-3 py-1 bg-red-600 text-white rounded"
-                  onClick={() => handleDelete(Number(a.id))}
+                  onClick={() => handleDelete(String(a.id))}
                 >
                   Excluir
                 </button>

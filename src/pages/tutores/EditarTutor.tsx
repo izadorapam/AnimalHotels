@@ -22,7 +22,7 @@ export default function EditarTutor() {
         setTelefone(t.telefone ?? "");
       } catch {
         alert("Erro ao carregar tutor.");
-        navigate("/tutores");
+        navigate("/tutors");
       } finally {
         setLoading(false);
       }
@@ -37,7 +37,7 @@ export default function EditarTutor() {
 
     try {
       await updateTutor(id, { nome, email, telefone });
-      navigate("/tutores");
+      navigate("/tutors");
     } catch (err: any) {
       alert(err.response?.data?.message ?? "Erro ao atualizar tutor");
     }
