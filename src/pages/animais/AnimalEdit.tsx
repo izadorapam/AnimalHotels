@@ -28,11 +28,11 @@ export default function AnimalEdit() {
     loadTutors();
   }, [id]);
 
-const handleSubmit = async (data: Partial<Animal>) => {
-  if (!id) return;          
-  await animalService.update(id, data);  
-  navigate("/animals");
-};
+  const handleSubmit = async (data: Partial<Animal>) => {
+    if (!id) return;           
+    await animalService.update(id, data);  
+    navigate("/animals");
+  };
 
   if (!animal) return <p className="p-4">Carregando...</p>;
 

@@ -31,7 +31,7 @@ export default function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1 className="text-red-400">Login</h1>
 
       {state.error && <p style={{ color: "red" }}>{state.error}</p>}
 

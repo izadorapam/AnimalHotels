@@ -80,7 +80,7 @@ export default function TutorsPage() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Tutors</h1>
+      <h1>Tutores</h1>
 
       {/* Formulário */}
       <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
