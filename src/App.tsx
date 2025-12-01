@@ -1,15 +1,26 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, useLocation } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AppRoutes } from "./routes/AppRoutes";
+import { Navbar } from "./components/Navbar";
 
-function App() {
+function Layout() {
+  const location = useLocation();
+  const hideNavbar = location.pathname === "/login";
+
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
-    </BrowserRouter>
+    <>
+      {!hideNavbar && <Navbar />}
+      <AppRoutes />
+    </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}

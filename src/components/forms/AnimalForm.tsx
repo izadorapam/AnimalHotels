@@ -53,7 +53,7 @@ export default function AnimalForm({ defaultValues, onSubmit, tutors }: Props) {
 
       {/* Tutor */}
       <select
-        {...register("tutorId")}
+        {...register("tutorId", { valueAsNumber: true })}   // <<<<< CORREÇÃO AQUI
         className="input border p-2 rounded"
         required
       >

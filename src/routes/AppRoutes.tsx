@@ -21,15 +21,16 @@ import AnimalEdit from "../pages/animais/AnimalEdit";
 
 function PrivateRoute({ children }: { children: ReactNode }) {
   const { state } = useAuth();
-  const user = state?.user;
+  const token = state?.token;
   const location = useLocation();
 
-  if (!user) {
+  if (!token) {
     return <Navigate to="/login" state={{ from: location.pathname }} replace />;
   }
 
   return <>{children}</>;
 }
+
 
 
 export function AppRoutes() {
@@ -84,6 +85,8 @@ export function AppRoutes() {
           </PrivateRoute>
         }
       />
+
+      {/* ESTA DEVE VIR ANTES */}
       <Route
         path="/animais/novo"
         element={
@@ -92,6 +95,8 @@ export function AppRoutes() {
           </PrivateRoute>
         }
       />
+
+      {/* ESTA FICA POR ÚLTIMO */}
       <Route
         path="/animais/:id"
         element={
@@ -100,6 +105,7 @@ export function AppRoutes() {
           </PrivateRoute>
         }
       />
+
 
       {/* QUALQUER OUTRA ROTA REDIRECIONA */}
       <Route path="*" element={<Navigate to="/" replace />} />
